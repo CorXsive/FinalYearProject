@@ -1,0 +1,135 @@
+<!DOCTYPE>
+<html>
+<head>
+  <title>BinanceFYP</title>
+</head>
+<!-- CSS -->
+<link href="../../css/bootstrap-4.1.1/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/index-css/index.css" rel="stylesheet">
+<!-- JS -->
+<script src="../../js/jquery-3.3.1/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#content2").fadeOut(0);
+  $("#span1").click(function(){
+    $(this).addClass("active");
+    $("#span2").removeClass("active");
+		$("#content1").delay(99).fadeIn(100);
+ 		$("#content2").fadeOut(100);
+  });
+  $("#span2").click(function(){
+    $(this).addClass("active");
+    $("#span1").removeClass("active");
+		$("#content2").delay(99).fadeIn(100);
+ 		$("#content1").fadeOut(100);
+  });
+  var urlparams = new URLSearchParams(window.location.search);
+  if(urlparams.has('p')){
+    if(urlparams.get('p')=="cu"){
+      $("#span2").addClass("active");
+      $("#span1").removeClass("active");
+  		$("#content2").fadeIn(0);
+   		$("#content1").fadeOut(0);
+    }
+  }
+});
+</script>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">BinanceFYP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="../index.html">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../login/login.html">Login & Register</a>
+            </li>
+            <li class="nav-item dropdown">
+              <img class="nav-link dropdown-toggle" id="navbarDropdown" src="../../src/gear.png" role="button" data-toggle="dropdown" aria-haspopup="true" height="30px" width="30px" style="margin-top:5.5px;" alt="setting"></img>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-item">
+                  <a>
+                  Night Shifting
+                  </a>
+                  <a>
+                    <label class="switch" style="margin-bottom:0rem;">
+                      <input type="checkbox" checked>
+                      <span class="slider round"></span>
+                    </label>
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--container-->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <h1 class="my-4"></h1>
+          <div class="list-group">
+            <a href="#" class="list-group-item active a" id="span1">FAQ</a>
+            <a href="#" class="list-group-item a" id="span2">Contact Us</a>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <span id="content1">
+            <div>
+              <h1 class="my-4">Q: This is FAQ.</h1>
+              <small class="text-muted">A: Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
+            </div>
+            <div>
+              <h1 class="my-4">Q: Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
+              <small class="text-muted">A: Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
+            </div>
+            <div>
+              <h1 class="my-4">Q: Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
+              <small class="text-muted">A: Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
+            </div><br/>
+          </span>
+          <span id="content2">
+            <div>
+              <h1 class="my-4">Q: This is ContactUs.</h1>
+              <small class="text-muted">A: Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
+            </div>
+            <div>
+              <h1 class="my-4">Q: Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
+              <small class="text-muted">A: Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
+            </div>
+            <div>
+              <h1 class="my-4">Q: Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
+              <small class="text-muted">A: Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
+            </div><br/>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../js/bootstrap-4.1.1/bootstrap.bundle.min.js"></script>
+
+  </body>
+</html>
