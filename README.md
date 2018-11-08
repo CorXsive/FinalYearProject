@@ -1,3 +1,9 @@
+0.0.4.1 (2018-11-09)
+-----
+system logical problem fix:
+  long-short logic remaked
+  
+
 0.0.4 (2018-11-06)
 -----
 demo version: one stock
