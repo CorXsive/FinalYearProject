@@ -51,13 +51,16 @@ $("#limitSAmount").keyup(function(){
 //function Place order - long
 function LimitLong(){
   var price = parseFloat($("#formLimitLong .price").val());
-  console.log(price);
   var amount = parseFloat($("#formLimitLong .amount").val());
   var total = parseFloat($("#formLimitLong .total").val());
   var coin = parseFloat($("#coin").val());
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = coin + stockValue;
+  var defaultBalance = parseFloat($("#balance").val());
+
   if(price==""||amount==""){
     alert("Please fill in the blank");
-  }else if(total>coin){
+  }else if(total>(defaultBalance)){
     alert("Please fill the correct price");
   }else{
     var today = new Date();
@@ -127,9 +130,12 @@ function LimitShort(){
   var amount = parseFloat($("#formLimitShort .amount").val());
   var total = parseFloat($("#formLimitShort .total").val());
   var coin = parseFloat($("#coin").val());
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = coin + stockValue;
+  var defaultBalance = parseFloat($("#balance").val());
   if(price==""||amount==""){
     alert("Please fill in the blank");
-  }else if(total>coin){
+  }else if(total>defaultBalance){
     alert("Please fill the correct price");
   }else{
     var today = new Date();
@@ -197,9 +203,12 @@ function MarketLong(){
   var amount = parseFloat($("#formMarketLong .amount").val());
   var total = price*amount;
   var coin = parseFloat($("#coin").val());
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = coin + stockValue;
+  var defaultBalance = parseFloat($("#balance").val());
   if(price==""||amount==""){
     alert("Please fill in the blank");
-  }else if(total>coin){
+  }else if(total>defaultBalance){
     alert("Please fill the correct price");
   }else{
     var today = new Date();
@@ -258,9 +267,12 @@ function MarketShort(){
   var amount = parseFloat($("#formMarketShort .amount").val());
   var total = price*amount;
   var coin = parseFloat($("#coin").val());
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = coin + stockValue;
+  var defaultBalance = parseFloat($("#balance").val());
   if(price==""||amount==""){
     alert("Please fill in the blank");
-  }else if(total>coin){
+  }else if(total>defaultBalance){
     alert("Please fill the correct price");
   }else{
     var today = new Date();
@@ -327,6 +339,8 @@ function cancelOrder(row){
     }
   }
 }
+
+
 function cancelAllOrder(){
   var r = $("#OpenOrder tbody tr");
   var l = r.length;
@@ -336,67 +350,114 @@ function cancelAllOrder(){
   }
 }
 
-
-
-
-
 //25,50,75,100
-$(".025").click(function(){
-  var coin = $("#coin").val();
-  //change price, by amount + show Total
-  var price = $(this).parents().parents().children(".price").val();
+$(".b025").click(function(){
+  var x=0.25;
+  var coin = parseFloat($("#coin").val());//左上
+  var stockValue = parseFloat($("#stockValue").val());//(value)
+  var price = $(this).parents().parents().children(".price").val();//input
+  var totalValue = coin + stockValue;
+  var amount;
   if(price==""){
-    var amount = 0;
+    amount = 0;
   }else if(isNaN(price)){
     //TODO stop-limit;
   }else{
-    var amount=coin*0.25/price;
+    amount=x*totalValue/price;
   }
   $(this).parents().parents().children(".amount").val(amount);
   var c = price*amount;
   $(this).parents().parents().children(".total").val(c);
 });
-$(".050").click(function(){
+$(".b050").click(function(){
+  var x=0.5;
   var coin = $("#coin").val();
-  //change price, by amount + show Total
   var price = $(this).parents().parents().children(".price").val();
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = parseFloat(coin) + stockValue;
+  var amount;
   if(price==""){
-    var amount = 0;
+    amount = 0;
   }else if(isNaN(price)){
     //TODO stop-limit;
   }else{
-    var amount=coin*0.5/price;
+    amount=x*totalValue/price;
   }
   $(this).parents().parents().children(".amount").val(amount);
   var c = price*amount;
   $(this).parents().parents().children(".total").val(c);
 });
-$(".075").click(function(){
+$(".b075").click(function(){
+  var x=0.75;
   var coin = $("#coin").val();
-  //change price, by amount + show Total
   var price = $(this).parents().parents().children(".price").val();
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = parseFloat(coin) + stockValue;
+  var amount;
   if(price==""){
-    var amount = 0;
+    amount = 0;
   }else if(isNaN(price)){
     //TODO stop-limit;
   }else{
-    var amount=coin*0.75/price;
+    amount=x*totalValue/price;
   }
   $(this).parents().parents().children(".amount").val(amount);
   var c = price*amount;
   $(this).parents().parents().children(".total").val(c);
 });
-$(".100").click(function(){
+$(".b100").click(function(){
   var coin = $("#coin").val();
-  //change price, by amount + show Total
   var price = $(this).parents().parents().children(".price").val();
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = parseFloat(coin) + stockValue;
+  var amount;
   if(price==""){
-    var amount = 0;
+    amount = 0;
   }else if(isNaN(price)){
-    //TODO stop-limit;
+  //TODO stop-limit;
   }else{
-    var amount=coin/price;
+    amount=totalValue/price;
   }
+  $(this).parents().parents().children(".amount").val(amount);
+  var c = price*amount;
+  $(this).parents().parents().children(".total").val(c);
+});
+$(".s025").click(function(){
+  var coin = $("#coin").val();
+  var price = $(this).parents().parents().children(".price").val();
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = parseFloat(coin) + stockValue;
+  var amount = 0.25*totalValue/price;
+  $(this).parents().parents().children(".amount").val(amount);
+  var c = price*amount;
+  $(this).parents().parents().children(".total").val(c);
+});
+$(".s050").click(function(){
+  var coin = $("#coin").val();
+  var price = $(this).parents().parents().children(".price").val();
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = parseFloat(coin) + stockValue;
+  var amount = 0.5*totalValue/price;
+  $(this).parents().parents().children(".amount").val(amount);
+  var c = price*amount;
+  $(this).parents().parents().children(".total").val(c);
+});
+$(".s075").click(function(){
+  var coin = $("#coin").val();
+  var price = $(this).parents().parents().children(".price").val();
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = parseFloat(coin) + stockValue;
+  var amount = 0.75*totalValue/price;
+  $(this).parents().parents().children(".amount").val(amount);
+  var c = price*amount;
+  $(this).parents().parents().children(".total").val(c);
+});
+$(".s100").click(function(){
+  var coin = $("#coin").val();
+  var price = $(this).parents().parents().children(".price").val();
+  var stockValue = parseFloat($("#stockValue").val());
+  var totalValue = parseFloat(coin) + stockValue;
+  var amount = totalValue/price;
   $(this).parents().parents().children(".amount").val(amount);
   var c = price*amount;
   $(this).parents().parents().children(".total").val(c);

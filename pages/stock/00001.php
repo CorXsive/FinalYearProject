@@ -21,31 +21,49 @@ body{
 <script src="../../js/bootstrap-4.0.0/bootstrap.min.js"></script>
 <body>
   <input type="hidden" id="coin">
+  <input type="hidden" id="stockValue">
   <input type="hidden" id="price">
   <input type="hidden" id="stock">
-  <script id="testing">
+  <input type="hidden" id="balance">
+  <script>
+  var defaultBalance = 10000;
   var coin = 10000;
   var current = 50;
   var stock = 0;
+  var stockValue = stock*current;
+
   function gaga(){
     current += 1;
-    console.log("current="+current);
     $("#pricetest").text(current);
+    $("#stockValuetest").text(current*stock);
     $("#MarketLPrice").text(current);
     $("#MarketSPrice").text(current);
+    stockValue = stock*current;
+    defaultBalance = stockValue + coin;
+    console.log("stock="+stock+",stockValue="+stockValue);
     trig();
+    $("#balance").val(defaultBalance);
+    $("#stockValue").val(stockValue);
   }
   function gamgam(){
     current -= 1;
-    console.log("current="+current);
     $("#pricetest").text(current);
+    $("#stockValuetest").text(current*stock);
+    $("#MarketLPrice").text(current);
+    $("#MarketSPrice").text(current);
+    stockValue = stock*current;
+    console.log("stock="+stock+",stockValue="+stockValue);
     trig();
+    $("#balance").val(defaultBalance);
+    $("#stockValue").val(stockValue);
   }
   document.getElementById("coin").value = coin;
   document.getElementById("price").value = current;
   $("#MarketLPrice").val(current);
   $("#MarketSPrice").val(current);
   document.getElementById("stock").value = stock;
+  document.getElementById("stockValue").value = stockValue;
+  document.getElementById("balance").value = defaultBalance;
   function trig(){
     var r = $("#OpenOrder tbody tr");
     var str_store = "";
@@ -68,10 +86,17 @@ body{
           var x,z;
           x = (document.getElementById('coin').value =parseFloat(document.getElementById('coin').value) - t);
           z = (document.getElementById('stock').value =parseFloat(document.getElementById('stock').value) + a);
+
           //print
           $("#cointest").text(parseFloat(x));
           $("#stocktest").text(parseFloat(z));
-
+          $("#coin").val(parseFloat(x));
+          $("#stock").val(parseFloat(z));
+          coin = parseFloat(x);
+          stock = parseFloat(z);
+          stockValue = stock*current;
+          $("#stockValue").val(stockValue);
+          $("#stockValuetest").text(parseFloat(z*current));
         }
       }else if(str_store === "Short Limit"){
         if(current>=p){
@@ -89,8 +114,23 @@ body{
           //print
           $("#cointest").text(parseFloat(x));
           $("#stocktest").text(parseFloat(z));
+          $("#coin").val(parseFloat(x));
+          $("#stock").val(parseFloat(z));
+          coin = parseFloat(x);
+          stock = parseFloat(z);
+          stockValue = stock*current;
+          $("#stockValue").val(stockValue);
+          $("#stockValuetest").text(parseFloat(z*current));
         }
       }else{
+        x = (document.getElementById('coin').value =parseFloat(document.getElementById('coin').value) + t);
+        z = (document.getElementById('stock').value =parseFloat(document.getElementById('stock').value) - a);
+        coin = parseFloat(x);
+        stock = parseFloat(z);
+        stockValue = stock*current;
+        defaultBalance = stockValue + coin;
+        $("#stockValuetest").text(parseFloat(z*current));
+        $("#stockValue").val(stockValue);
         // TODO:stop-limit
       }
     }
@@ -139,13 +179,13 @@ body{
     </div>
   </nav>
   <div class="container">
-      <div class="col-lg-2 col-md-4 col-md-offset-4">
-        var you have $<span id="cointest"><script>document.write($("#coin").val());</script></span><br/>
-        var fake current price <br/><h2 class="text-center"style="color:red"><span id="pricetest"><script>document.write($("#price").val());</script></span></h2><button onclick="gaga();">+</button><button onclick="gamgam();">-</button><br/>
-        var you have stock <span id="stocktest"><script>document.write($("#stock").val());</script></span>.
-      </div>
+    <div class="col-lg-6 col-md-6 col-md-offset-6">
+      var you have $<span id="cointest"><script>document.write($("#coin").val());</script></span>(stock value:$<span id="stockValuetest"><script>document.write($("#stockValue").val());</script></span>)<br/>
+      var fake current price <br/><h2 class="text-center"style="color:red"><span id="pricetest"><script>document.write($("#price").val());</script></span></h2><button onclick="gaga();">+</button><button onclick="gamgam();">-</button><br/>
+      var you have stock <span id="stocktest"><script>document.write($("#stock").val());</script></span>.
+    </div>
     <!-- this is limit -->
-    <div class="col-lg-10">
+    <div class="col-lg-12">
       <div class="col-md-8 col-md-offset-7">
         <div class="panel">
           <div class="panel-heading">
@@ -159,7 +199,7 @@ body{
                 <b>Limit Buy Stock:</b><br/>
                 Price: <input type="text" id="limitLPrice" class="price" required/><br/>
                 Amount: <input type="text" id="limitLAmount" class="amount" required/><br/>
-                <div><button class="025">25%</button><button class="050">50%</button><button class="075">75%</button><button class="100">100%</button></div><br/>
+                <div><input type="button" value="25%" class="b025"/><input type="button" value="50%" class="b050"/><input type="button" value="75%" class="b075"/><input type="button" value="100%" class="b100"/></div><br/>
                 Total: <input type="text" id="limitLTotal" class="total" readonly/><br/>
                 <input type="button" onclick="LimitLong()" class="form-control btn-login" value="Place Long Order" id="limitBuy"/>
               </form>
@@ -167,7 +207,7 @@ body{
                 <b>Limit Sell Stock:</b><br/>
                 Price: <input type="text" id="limitSPrice" class="price" required/><br/>
                 Amount: <input type="text" id="limitSAmount" class="amount" required/><br/>
-                <div><button class="025">25%</button><button class="050">50%</button><button class="075">75%</button><button class="100">100%</button></div><br/>
+                <div><input type="button" value="25%" class="s025"/><input type="button" value="50%" class="s050"/><input type="button" value="75%" class="s075"/><input type="button" value="100%" class="s100"/></div><br/>
                 Total: <input type="text" id="limitSTotal" class="total" readonly/><br/>
                 <input type="button" onclick="LimitShort()" class="form-control btn-login" value="Place Short Order" id="limitSell"/>
               </form>
@@ -176,14 +216,14 @@ body{
                 <b>Market Buy Stock:</b><br/>
                 Price: <input type="text" id="MarketLPrice" class="price" readonly/><br/>
                 Amount: <input type="text" id="MarketLAmount"class="amount" required/><br/>
-                <div><button class="025">25%</button><button class="050">50%</button><button class="075">75%</button><button class="100">100%</button></div><br/>
+                <div><input type="button" value="25%" class="b025"/><input type="button" value="50%" class="b050"/><input type="button" value="75%" class="b075"/><input type="button" value="100%" class="b100"/></div><br/>
                 <input type="button" onclick="MarketLong()" class="form-control btn-login" value="Place Long Order" id="MarketBuy"/>
               </form>
               <form id="formMarketShort" style="display: none;padding-left:20px">
                 <b>Market Sell Stock:</b><br/>
                 Price: <input type="text" id="MarketSPrice" class="price" readonly/><br/>
                 Amount: <input type="text" id="MarketSAmount" class="amount" required/><br/>
-                <div><button class="025">25%</button><button class="050">50%</button><button class="075">75%</button><button class="100">100%</button></div><br/>
+                <div><input type="button" value="25%" class="s025"/><input type="button" value="50%" class="s050"/><input type="button" value="75%" class="s075"/><input type="button" value="100%" class="s100"/></div><br/>
                 <input type="button" onclick="MarketShort()" class="form-control btn-login" value="Place Short Order" id="MarketSell"/>
               </form>
               <!-- this is stop-limit -->
@@ -192,7 +232,7 @@ body{
                 Stop: <input type="text" id="stopLimitLStop" value="0" required/><br/>
                 Limit: <input type="text" id="stopLimitLLimit" value="0" required/><br/>
                 Amount: <input type="text" id="stopLimitLAmount" class="amount" value="0" required/><br/>
-                <div><button class="025">25%</button><button class="050">50%</button><button class="075">75%</button><button class="100">100%</button></div><br/>
+                <div><input type="button" value="25%" class="b025"/><input type="button" value="50%" class="b050"/><input type="button" value="75%" class="b075"/><input type="button" value="100%" class="b100"/></div><br/>
                 Total: <input type="text" id="stopLimitLTotal" class="total" readonly/><br/>
                 <input type="submit" class="form-control btn-login" value="Place Stop Long Order" id="StopLimitBuy"/>
               </form>
@@ -201,7 +241,7 @@ body{
                 Stop: <input type="text" id="stopLimitSStop" value="0" required/><br/>
                 Limit: <input type="text" id="stopLimitSLimit" value="0" required/><br/>
                 Amount: <input type="text" id="stopLimitSAmount" class="amount" value="0" required/><br/>
-                <div><button class="025">25%</button><button class="050">50%</button><button class="075">75%</button><button class="100">100%</button></div><br/>
+                <div><input type="button" value="25%" class="s025"/><input type="button" value="50%" class="s050"/><input type="button" value="75%" class="s075"/><input type="button" value="100%" class="s100"/></div><br/>
                 Total: <input type="text" id="stopLimitSTotal" class="total" readonly/><br/>
                 <input type="submit" class="form-control btn-login" value="Place Stop Short Order" id="StopLimitBuy"/>
               </form>
