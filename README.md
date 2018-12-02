@@ -1,8 +1,14 @@
+0.0.5 (2018-12-04)
+-----
+index page embed a chart tradingview
+edit some stock ui
+inserting notification *not finished yet*
+
 0.0.4.1 (2018-11-09)
 -----
 system logical problem fix:
   long-short logic remaked
-  
+
 
 0.0.4 (2018-11-06)
 -----

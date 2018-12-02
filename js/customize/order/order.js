@@ -46,7 +46,40 @@ $("#limitSAmount").keyup(function(){
 
 
 
+//notification
+function notifyMe(orderType) {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
 
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    var notification;
+    if(orderType=="Order Placed"){
+      notification = new Notification("Order Placed Success");
+    }else if(orderType=="Market Placed"){
+      notification = new Notification("Order Placed Success");
+    }else if(orderType=="Order Cancelled"){
+      notification = new Notification("Order Cancel Success");
+    }else if(orderType=="triggered"){
+      notification = new Notification("Order Triggered");
+    }
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        var notification = new Notification("Browser doesn't support notification");
+      }
+    });
+  }
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them any more.
+}
 
 //function Place order - long
 function LimitLong(){

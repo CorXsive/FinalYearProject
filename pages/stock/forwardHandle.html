@@ -1,0 +1,24 @@
+<html>
+<head></head>
+<body></body>
+<script>
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var c = url.searchParams.get("tvwidgetsymbol");
+  if(c=="INDEX:HSI"){
+    window.location.href = "HK_HSI.php";
+  }else if(c=="INDEX:NKY"){
+    alert("Waiting Pages");
+  }else if(c=="DJ:DJI"){
+    alert("Waiting Pages");
+  }else if(c=="INDEX:SPX"){
+    alert("Waiting Pages");
+  }else if(c=="NASDAQ:IXIC"){
+    alert("Waiting Pages");
+  }else if(c=="XETR:DAX"){
+    alert("Waiting Pages");
+  }else if(c=="INDEX:CAC"){
+    alert("Waiting Pages");
+  }
+</script>
+</html>

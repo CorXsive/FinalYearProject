@@ -1,4 +1,5 @@
 <html>
+<meta charset="utf-8"/>
 <head>
   <title></title>
 </head>
@@ -161,13 +162,13 @@ body{
           <li class="nav-item dropdown">
             <img class="nav-link dropdown-toggle" id="navbarDropdown" src="../../src/gear.png" role="button" data-toggle="dropdown" aria-haspopup="true" height="30px" width="30px" style="margin-top:5.5px;" alt="setting"></img>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="dropdown-item">
+              <div class="dropdown-item" style="visibility:none;">
                 <a>
                   Night Shifting
                 </a>
                 <a>
                   <label class="switch" style="margin-bottom:0rem;">
-                    <input type="checkbox" checked>
+                    <input type="checkbox">
                     <span class="slider round"></span>
                   </label>
                 </a>
@@ -184,6 +185,31 @@ body{
       var fake current price <br/><h2 class="text-center"style="color:red"><span id="pricetest"><script>document.write($("#price").val());</script></span></h2><button onclick="gaga();">+</button><button onclick="gamgam();">-</button><br/>
       var you have stock <span id="stocktest"><script>document.write($("#stock").val());</script></span>.
     </div>
+    <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div id="tradingview_b0bed"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/INDEX-HSI/" rel="noopener" target="_blank"><span class="blue-text">HSI chart</span></a> by TradingView</div>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+  new TradingView.widget(
+  {
+  "width": 1200,
+  "height": 600,
+  "symbol": "INDEX:HSI",
+  "interval": "D",
+  "timezone": "Etc/UTC",
+  "theme": "Light",
+  "style": "1",
+  "locale": "en",
+  "toolbar_bg": "#f1f3f6",
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "container_id": "tradingview_b0bed"
+}
+  );
+  </script>
+</div>
+<!-- TradingView Widget END -->
     <!-- this is limit -->
     <div class="col-lg-12">
       <div class="col-md-8 col-md-offset-7">

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <meta charset="utf-8"/>
   <head>
     <title>BinanceFYP</title>
   </head>
@@ -18,7 +19,7 @@
     visibility:hidden;
   }
   .nightShift{
-    
+
   }
 	</style>
   <!-- JS -->
@@ -65,7 +66,6 @@
       $(".day-data").fadeIn(0);
       $('.dropdown-toggle').dropdown('toggle');
         //{$(this).css("position","static");}
-
     });
   </script>
   <body>
@@ -186,10 +186,16 @@
 
         <div class="col-lg-9">
           <div class="row">
-            <table class="table table-bordered table-striped table-hover">
-              <thead><tr><th>Hong Kong Stock</th><th>US Stock</th><th>Cryptocurrency</th></tr></thead>
-              <tbody class="col">
-              <tr><td><a href="stock/00001.php">Stock A</a></td></tr>
+            <div class="tv-tabs__scroll-box">
+              <div class="active">
+                Hong Kong Stock</div>
+              <div>
+                US Stock
+              </div>
+              <div>
+                Cryptocurrency
+              </div><!--<tbody>
+              <tr><td><a href="stock/HK_HSI.php">HSI (Hang Seng Index)</a></td><td>Last price</td><td>24hr change</td></tr>
               <tr><td><a href="stock/test_id_B.html">Stock B</a></td></tr>
               <tr><td><a href="stock/test_id_C.html">Stock C</a></td></tr>
               <tr><td>Stock D</td></tr>
@@ -215,8 +221,98 @@
               <tr><td>Stock X</td></tr>
               <tr><td>Stock Y</td></tr>
               <tr><td>Stock Z</td></tr>
-              </tbody>
+            </tbody>-->
             </table>
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container active" id="chartHongKong">
+              <div class="tradingview-widget-container__widget"></div>
+              <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/indices/" rel="noopener" target="_blank"><span class="blue-text">Indices</span></a> <span class="blue-text">and</span> <a href="https://www.tradingview.com/markets/futures/" rel="noopener" target="_blank"><span class="blue-text">Commodities</span></a> by TradingView</div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+              {
+              "width": 838,
+              "height": 500,
+              "symbolsGroups": [
+                {
+                  "symbols": [
+                    {
+                      "name": "INDEX:HSI",
+                      "displayName": "恆生指數 (HKD)"
+                    },
+                    {
+                      "name": "INDEX:NKY",
+                      "displayName": "日經平均指數 (JPY)"
+                    },
+                    {
+                      "name": "DJ:DJI",
+                      "displayName": "道瓊斯工業平均指數 (USD)"
+                    },
+                    {
+                      "name": "INDEX:SPX",
+                      "displayName": "標普500指數 (USD)"
+                    },
+                    {
+                      "name": "NASDAQ:IXIC",
+                      "displayName": "納斯達克指數 (USD)"
+                    },
+                    {
+                      "name": "XETR:DAX",
+                      "displayName": "德國DAX指數 (EUR)"
+                    },
+                    {
+                      "name": "INDEX:CAC",
+                      "displayName": "法國CAC指數 (EUR)"
+                    }
+                  ],
+                  "name": "指數"
+                },
+                {
+                  "symbols": [
+                    {
+                      "name": "HKEX:​700",
+                      "displayName": "00700 騰訊控股"
+                    },
+                    {
+                      "name": "HKEX:2318",
+                      "displayName": "02318 中國平安"
+                    },
+                    {
+                      "name": "HKEX:3333",
+                      "displayName": "03333 中國恆大"
+                    },
+                    {
+                      "name": "HKEX:941",
+                      "displayName": "00941 中國移動"
+                    },
+                    {
+                      "name": "HKEX:939",
+                      "displayName": "00939 建設銀行"
+                    },
+                    {
+                      "name": "HKEX:1299",
+                      "displayName": "01299 友邦保險"
+                    },
+                    {
+                      "name": "HKEX:883",
+                      "displayName": "00883 中國海洋石油"
+                    },
+                    {
+                      "name": "HKEX:1398",
+                      "displayName": "01398 工商銀行"
+                    },
+                    {
+                      "name": "HKEX:16",
+                      "displayName": "00016 新鴻基地產"
+                    }
+                  ],
+                  "name": "股票 (以下貨幣單位為HKD)"
+                }
+              ],
+              "locale": "en-US",
+              "largeChartUrl": "http://localhost/fyp/pages/stock/forwardHandle.html"
+            }
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
           </div>
         <!-- /.row -->
             <!--item demo
@@ -316,16 +412,12 @@
               </div>
             </div>
             -->
-
         </div>
         <!-- /.col-lg-9 -->
-
       </div>
       <!-- /.row -->
-
     </div>
     <!-- /.container -->
-
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
@@ -333,10 +425,7 @@
       </div>
       <!-- /.container -->
     </footer>
-
     <!-- Bootstrap core JavaScript -->
     <script src="../js/bootstrap-4.1.1/bootstrap.bundle.min.js"></script>
-
   </body>
-
 </html>
