@@ -8,6 +8,7 @@
 <link href="../css/bootstrap-4.1.1/bootstrap.min.css" rel="stylesheet">
 <link href="../css/index-css/index.css" rel="stylesheet">
 <link href="../css/global/global.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
 a{
  color:#222;
@@ -69,6 +70,27 @@ a.new-active{
 <script src="../js/jquery-3.3.1/jquery-3.3.1.min.js"></script>
 <script>
 $(function(){
+ //dark theme
+  var myValue = false;
+  var r = document.getElementById("bg");
+  r.addEventListener("click", function(){
+   if(myValue){
+   document.body.style.backgroundColor = "#FFFFFF";
+   document.body.style.color = "#000000";
+   $("caption").css("color","#000000");
+    r.value = myValue;
+    myValue = !myValue;
+    console.log(r.value);
+   }else{
+    document.body.style.backgroundColor = "#565C5C";
+    document.body.style.color = "#FFFFFF";
+    $("caption").css("color","#FFFFFF");
+    r.value = myValue;
+    myValue = !myValue;
+    console.log(r.value);
+   }
+  });
+
  $('#day').click(function(e) {
   $("caption,#data tr").fadeOut(100);
   $(".day-data").delay(100).fadeIn(100);
@@ -135,7 +157,17 @@ $(document).ready(function(){
      <li class="nav-item">
       <a class="nav-link" href="login/login.html">Login & Register</a>
      </li>
-     <li class="nav-item dropdown">
+     <!--<li class="nav-item dropdown">-->
+     <li class="nav-item">
+      <i class="nav-link fas fa-cloud-sun"></i>
+     </li>
+     <li class="nav-item">
+      <label class="switch" style="margin-bottom:-0.5rem;">
+       <input type="checkbox" checked id="bg"/>
+       <span class="slider round"></span>
+      </label>
+     </li>
+     <!--
       <img class="nav-link dropdown-toggle" id="navbarDropdown" src="../src/gear.png" role="button" data-toggle="dropdown" aria-haspopup="true" height="30px" width="30px" style="margin-top:5.5px;" alt="setting"></img>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
        <div class="dropdown-item">
@@ -150,7 +182,7 @@ $(document).ready(function(){
         </a>
        </div>
       </div>
-     </li>
+     -->
     </ul>
    </div>
   </div>
